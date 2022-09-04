@@ -16,6 +16,8 @@
 		FBC6B5B728BF542A009DFF64 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FBC6B5B628BF542A009DFF64 /* Alamofire */; };
 		FBC6B5B928C1FE7C009DFF64 /* StationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC6B5B828C1FE7C009DFF64 /* StationInfoViewController.swift */; };
 		FBC6B5BB28C20196009DFF64 /* StationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC6B5BA28C20196009DFF64 /* StationCell.swift */; };
+		FBC6B5BE28C50234009DFF64 /* StationResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC6B5BD28C50234009DFF64 /* StationResponseModel.swift */; };
+		FBC6B5C128C50A60009DFF64 /* StationArrivalDataResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC6B5C028C50A60009DFF64 /* StationArrivalDataResponseModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		FBC6B5AC28BF534A009DFF64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBC6B5B828C1FE7C009DFF64 /* StationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationInfoViewController.swift; sourceTree = "<group>"; };
 		FBC6B5BA28C20196009DFF64 /* StationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationCell.swift; sourceTree = "<group>"; };
+		FBC6B5BD28C50234009DFF64 /* StationResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationResponseModel.swift; sourceTree = "<group>"; };
+		FBC6B5C028C50A60009DFF64 /* StationArrivalDataResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationArrivalDataResponseModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +72,7 @@
 				FBC6B5A728BF534A009DFF64 /* Assets.xcassets */,
 				FBC6B5A928BF534A009DFF64 /* LaunchScreen.storyboard */,
 				FBC6B5AC28BF534A009DFF64 /* Info.plist */,
-				FBC6B5BA28C20196009DFF64 /* StationCell.swift */,
+				FBC6B5BF28C50A32009DFF64 /* Model */,
 			);
 			path = SubwayStation;
 			sourceTree = "<group>";
@@ -78,8 +82,18 @@
 			children = (
 				FBC6B5A228BF534A009DFF64 /* StationSearchViewController.swift */,
 				FBC6B5B828C1FE7C009DFF64 /* StationInfoViewController.swift */,
+				FBC6B5BA28C20196009DFF64 /* StationCell.swift */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		FBC6B5BF28C50A32009DFF64 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FBC6B5BD28C50234009DFF64 /* StationResponseModel.swift */,
+				FBC6B5C028C50A60009DFF64 /* StationArrivalDataResponseModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,7 +175,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBC6B5BB28C20196009DFF64 /* StationCell.swift in Sources */,
+				FBC6B5BE28C50234009DFF64 /* StationResponseModel.swift in Sources */,
 				FBC6B5A328BF534A009DFF64 /* StationSearchViewController.swift in Sources */,
+				FBC6B5C128C50A60009DFF64 /* StationArrivalDataResponseModel.swift in Sources */,
 				FBC6B59F28BF534A009DFF64 /* AppDelegate.swift in Sources */,
 				FBC6B5A128BF534A009DFF64 /* SceneDelegate.swift in Sources */,
 				FBC6B5B928C1FE7C009DFF64 /* StationInfoViewController.swift in Sources */,

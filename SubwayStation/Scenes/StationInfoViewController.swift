@@ -4,11 +4,13 @@
 //
 //  Created by 이석원 on 2022/09/02.
 //
-
+import Alamofire
 import UIKit
 import SnapKit
 
 final class StationInfoViewController: UIViewController {
+    private let station: Station
+    private var realtimeArrivarList: [StationArrivalDataResponseModel.RealTimeArrival] = []
     
     private lazy var refreshControl: UIRefreshControl = {
        let refreshControl = UIRefreshControl()
@@ -17,10 +19,8 @@ final class StationInfoViewController: UIViewController {
         return refreshControl
     }()
     
-    @objc func fetchData() {
-        print("Refresh !")
-        refreshControl.endRefreshing()
-    }
+
+    
     private lazy var collectionView: UICollectionView = {
        let layout = UICollectionViewFlowLayout()
         layout.estimatedItemSize = CGSize(
@@ -40,24 +40,59 @@ final class StationInfoViewController: UIViewController {
         return collectionView
     }()
     
+    init(station: Station) {
+        self.station = station
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = station.stationName
+        
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints{ $0.edges.equalToSuperview() }
+        
+        fetchData()
     }
+    
+    @objc private func fetchData() {
+        
+        let stationName = station.stationName
+        let urlString = "http://swopenAPI.seoul.go.kr/api/subway/sample/json/realtimeStationArrival/0/5/\(stationName.replacingOccurrences(of: "역", with: ""))"
+        AF.request(urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
+            .responseDecodable(of: StationArrivalDataResponseModel.self) {[weak self] response in
+                self?.refreshControl.endRefreshing()
+                
+                guard case .success(let data) = response.result else { return }
+                
+                self?.realtimeArrivarList = data.realtimeArrivalList
+                self?.collectionView.reloadData()
+                
+            }
+            .resume()
+    }
+    
 }
 
 extension StationInfoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StationCell", for: indexPath) as? StationCell
-        cell?.setup()
+        
+        let realTimeArrival = realtimeArrivarList[indexPath.row]
+        cell?.setup(with: realTimeArrival)
         
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return realtimeArrivarList.count
     }
 }
 
